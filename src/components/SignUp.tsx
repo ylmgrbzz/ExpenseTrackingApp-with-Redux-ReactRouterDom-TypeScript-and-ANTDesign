@@ -1,15 +1,10 @@
 import { Form, Input, Button } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 import api from "../utils/api";
-import { message } from "antd";
+import showError from "../utils/showError";
 
-const SignUp = () => {
-  const navigate = useNavigate();
-
-  const showError = (errorMessage: string) => {
-    message.error(errorMessage);
-  };
-
+function SignUp() {
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -26,16 +21,18 @@ const SignUp = () => {
     },
   };
 
+  const history = useHistory();
+
   const onFinish = async (values: any) => {
     try {
-      console.log("values", values);
-      await api.post("/users/register", values);
-      navigate("/login");
+      await api().post("/users/register", values);
+      history.push("/login", { newSignUp: true });
     } catch (error) {
       console.log({ error });
       showError((error as any).response.data.errorMessage);
     }
   };
+
   return (
     <Form
       {...layout}
@@ -75,6 +72,6 @@ const SignUp = () => {
       </Form.Item>
     </Form>
   );
-};
+}
 
 export default SignUp;
