@@ -1,8 +1,10 @@
-import React from "react";
 import { Form, Input, Button } from "antd";
-// import { useHistory as customUseHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import api from "../utils/api";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -19,12 +21,11 @@ const SignUp = () => {
     },
   };
 
-  //   const history = customUseHistory();
-
   const onFinish = async (values: any) => {
     try {
-      //   await api.post("/users/register", values);
-      //   history.push("/login", { newSignUp: true });
+      console.log("values", values);
+      await api.post("/users/register", values);
+      navigate("/login");
     } catch (error) {
       console.log({ error });
       //   showError((error as any).response.data.errorMessage);
