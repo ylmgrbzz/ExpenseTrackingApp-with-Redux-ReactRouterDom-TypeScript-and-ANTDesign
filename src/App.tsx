@@ -28,9 +28,7 @@ function App() {
         <PrivateRoute path="/categories" component={Categories} />
         <PrivateRoute path="/records" component={Records} /> */}
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        Expense Tracker @ React Dersleri 2021
-      </Footer>
+      <Footer style={{ textAlign: "center" }}>Yalım Gürbüz</Footer>
     </Layout>
   );
 }
