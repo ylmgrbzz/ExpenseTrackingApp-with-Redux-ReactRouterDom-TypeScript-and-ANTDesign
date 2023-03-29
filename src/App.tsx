@@ -2,6 +2,7 @@ import React from "react";
 import SignUp from "./components/SignUp";
 import { Routes, Route } from "react-router-dom";
 import { Layout, Menu } from "antd";
+import Login from "./components/Login";
 
 const { Header, Content, Footer } = Layout;
 
@@ -22,6 +23,7 @@ function App() {
       >
         <Routes>
           <Route path="/register" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
 
         {/* <Route path="/login" component={Login} />

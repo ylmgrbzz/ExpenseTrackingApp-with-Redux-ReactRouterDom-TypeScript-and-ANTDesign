@@ -1,9 +1,14 @@
 import { Form, Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/api";
+import { message } from "antd";
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  const showError = (errorMessage: string) => {
+    message.error(errorMessage);
+  };
 
   const layout = {
     labelCol: { span: 8 },
@@ -28,7 +33,7 @@ const SignUp = () => {
       navigate("/login");
     } catch (error) {
       console.log({ error });
-      //   showError((error as any).response.data.errorMessage);
+      showError((error as any).response.data.errorMessage);
     }
   };
   return (
