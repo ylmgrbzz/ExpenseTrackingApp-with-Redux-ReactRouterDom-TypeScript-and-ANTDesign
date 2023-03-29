@@ -14,6 +14,10 @@ export interface UserState {
     error: string;
 }
 
+export interface LoginForm {
+    username: string;
+    password: string;
+}
 interface LOGIN_START {
     type: "LOGIN_START";
 }

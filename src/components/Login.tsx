@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { message } from "antd";
+import api from "../utils/api";
+import { LoginForm } from "../types/user";
+import { login } from "../store/actions/userActions";
 // import { AppState } from "../store";
 
 const Login = () => {
@@ -21,8 +24,19 @@ const Login = () => {
 
   const { data, loading, error } = useSelector((state: any) => state.user);
 
-  const onFinish = (values: any) => {
-    // dispatch(login(values));
+  //   const onFinish = (values: LoginForm) => {
+  //     dispatch(login(values));
+  //   };
+
+  const onFinish = async (values: LoginForm) => {
+    try {
+      console.log("values", values);
+      await api.post("/users/login", values);
+      navigate("/");
+    } catch (error) {
+      console.log({ error });
+      showError((error as any).response.data.errorMessage);
+    }
   };
 
   useEffect(() => {
